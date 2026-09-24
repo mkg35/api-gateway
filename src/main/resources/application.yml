@@ -6,19 +6,18 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      mvc:
-        routes:
-          # 1. KURAL: Sipariş Servisi Rotası
-          - id: order-service
-            uri: lb://order-service
-            predicates:
-              - Path=/api/order/**
+      routes:
+        # 1. KURAL: Sipariş Servisi
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/order/**
 
-          # 2. KURAL: Stok Servisi Rotası
-          - id: inventory-service
-            uri: lb://inventory-service
-            predicates:
-              - Path=/api/inventory/**
+        # 2. KURAL: Stok Servisi
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/inventory/**
 
 eureka:
   client:
